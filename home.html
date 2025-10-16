@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pernikahan Gung Gus & Sonia</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Reset dan Variabel */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #8B7355;
+            --secondary-color: #D4B996;
+            --accent-color: #F5E8D0;
+            --text-light: #ffffff;
+            --shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        body, html {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-light);
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        /* Video Background Container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .video-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            z-index: -2;
+            filter: brightness(0.8);
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(139, 115, 85, 0.3) 0%,
+                rgba(0, 0, 0, 0.5) 50%,
+                rgba(139, 115, 85, 0.3) 100%
+            );
+            z-index: -1;
+        }
+        
+        /* Particle Effects */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Konten Utama */
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 10;
+            padding: 20px;
+        }
+        
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            letter-spacing: 8px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            animation: fadeInDown 1.5s ease-out;
+        }
+        
+        .couple-names {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            margin: 20px 0;
+            line-height: 1.2;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            animation: fadeInUp 1.5s ease-out 0.5s both;
+        }
+        
+        .wedding-date {
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+            animation: fadeInUp 1.5s ease-out 1s both;
+        }
+        
+        /* Countdown */
+        .countdown-section {
+            margin: 30px 0;
+            animation: fadeInUp 1.5s ease-out 1.5s both;
+        }
+        
+        .countdown-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+        }
+        
+        .countdown-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 10px;
+            padding: 20px 15px;
+            min-width: 90px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .countdown-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .countdown-number {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .countdown-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+        
+        /* Tombol Simpan Tanggal */
+        .save-date-btn {
+            margin-top: 30px;
+            padding: 15px 35px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(15px);
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: var(--shadow);
+            animation: fadeInUp 1.5s ease-out 2s both;
+        }
+        
+        .save-date-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+        
+        /* Kontrol Video */
+        .video-control {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 20;
+            backdrop-filter: blur(15px);
+            box-shadow: var(--shadow);
+        }
+        
+        .video-control:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.1);
+        }
+        
+        /* Tombol Next */
+        .next-btn {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 20;
+            backdrop-filter: blur(15px);
+            box-shadow: var(--shadow);
+            animation: pulse 2s infinite;
+        }
+        
+        .next-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.1);
+            animation: none;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+                letter-spacing: 5px;
+            }
+            
+            .couple-names {
+                font-size: 3rem;
+            }
+            
+            .wedding-date {
+                font-size: 1.2rem;
+            }
+            
+            .countdown-item {
+                min-width: 70px;
+                padding: 15px 10px;
+            }
+            
+            .countdown-number {
+                font-size: 1.8rem;
+            }
+            
+            .video-control, .next-btn {
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title {
+                font-size: 1.5rem;
+                letter-spacing: 3px;
+            }
+            
+            .couple-names {
+                font-size: 2.5rem;
+            }
+            
+            .countdown-container {
+                gap: 8px;
+            }
+            
+            .countdown-item {
+                min-width: 65px;
+                padding: 12px 8px;
+            }
+            
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+            
+            .save-date-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <div class="video-container">
+        <video class="video-background" autoplay muted loop playsinline id="bgVideo">
+            <!-- Video akan kita tambahkan nanti -->
+            <source src="videos/wedding-cinematic.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+        <div class="video-overlay"></div>
+        
+        <!-- Particle Effects -->
+        <div class="particles" id="particles"></div>
+        
+        <!-- Konten Utama -->
+        <div class="content">
+            <h1 class="title">PAWIWAHAN</h1>
+            <h2 class="couple-names">Gung Gus & Sonia</h2>
+            <p class="wedding-date">Jumat, 03 Oktober 2023</p>
+            
+            <div class="countdown-section">
+                <h3 class="countdown-title">Hitungan Mundur Acara</h3>
+                <div class="countdown-container">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-label">Hari</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-label">Jam</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-label">Menit</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">Detik</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="save-date-btn">
+                <i class="fas fa-calendar-plus"></i> Simpan Tanggal
+            </button>
+        </div>
+        
+        <!-- Kontrol Video -->
+        <div class="video-control" id="videoControl">
+            <i class="fas fa-volume-mute"></i>
+        </div>
+        
+        <!-- Tombol Next -->
+        <div class="next-btn" id="nextPage">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+    </div>
+
+     <script>
+    // Create better floating particles (petals effect)
+    function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 25;
+        
+        // Clear existing particles
+        particlesContainer.innerHTML = '';
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random size - lebih kecil dan variatif
+            const size = Math.random() * 6 + 2; // 2px to 8px
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Random position - mulai dari berbagai posisi
+            particle.style.left = `${Math.random() * 100}vw`;
+            
+            // Random animation duration - lebih lambat dan variatif
+            const duration = Math.random() * 20 + 20; // 20s to 40s
+            particle.style.animationDuration = `${duration}s`;
+            
+            // Random delay - lebih tersebar
+            particle.style.animationDelay = `${Math.random() * 10}s`;
+            
+            // Better random color - subtle white variations
+            const opacity = Math.random() * 0.4 + 0.3; // 0.3 to 0.7
+            particle.style.background = `rgba(255, 255, 255, ${opacity})`;
+            
+            // Add slight blur effect for softer look
+            particle.style.filter = 'blur(0.5px)';
+            
+            // Random rotation
+            particle.style.transform = `rotate(${Math.random() * 360}deg)`;
+            
+            // Better animation with easing
+            particle.style.animationTimingFunction = 'cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            particlesContainer.appendChild(particle);
+        }
+    }
+
+    // Countdown Timer
+    function updateCountdown() {
+        const weddingDate = new Date('October 03, 2023 00:00:00').getTime();
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+        
+        if (distance < 0) {
+            document.getElementById('days').innerHTML = '00';
+            document.getElementById('hours').innerHTML = '00';
+            document.getElementById('minutes').innerHTML = '00';
+            document.getElementById('seconds').innerHTML = '00';
+            return;
+        }
+        
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+        document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+    }
+    
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+    
+    // Simpan Tanggal
+    document.querySelector('.save-date-btn').addEventListener('click', function() {
+        const eventDate = new Date('2023-10-03');
+        const eventTitle = 'Pernikahan Gung Gus & Sonia';
+        const eventDescription = 'Pawiwahan Gung Gus & Sonia';
+        const eventLocation = 'Lihat undangan untuk detail lokasi';
+        
+        const startDate = eventDate.toISOString().replace(/-|:|\.\d+/g, '');
+        const endDate = new Date(eventDate.getTime() + 2 * 60 * 60 * 1000).toISOString().replace(/-|:|\.\d+/g, '');
+        
+        const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&dates=${startDate}/${endDate}&text=${encodeURIComponent(eventTitle)}&details=${encodeURIComponent(eventDescription)}&location=${encodeURIComponent(eventLocation)}`;
+        
+        window.open(googleCalendarUrl, '_blank');
+    });
+    
+    // Navigasi ke halaman berikutnya
+    document.getElementById('nextPage').addEventListener('click', function() {
+        // Tambahkan efek transisi sebelum pindah halaman
+        document.querySelector('.content').style.opacity = '0';
+        document.querySelector('.content').style.transform = 'translateY(50px)';
+        document.querySelector('.content').style.transition = 'all 0.8s ease';
+        
+        setTimeout(() => {
+            alert('Akan menuju ke halaman couple.html');
+            // window.location.href = 'pages/couple.html';
+        }, 800);
+    });
+    
+    // Initialize particles when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        createParticles();
+        
+        // Recreate particles jika ada resize (optional)
+        window.addEventListener('resize', function() {
+            createParticles();
+        });
+    });
+
+    // Video Control (jika nanti pakai video dengan audio)
+    const videoControl = document.getElementById('videoControl');
+    const video = document.getElementById('bgVideo');
+    
+    videoControl.addEventListener('click', function() {
+        if (video.muted) {
+            video.muted = false;
+            videoControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+            videoControl.style.background = 'rgba(255, 255, 255, 0.25)';
+        } else {
+            video.muted = true;
+            videoControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            videoControl.style.background = 'rgba(255, 255, 255, 0.15)';
+        }
+    });
+</script>
+</body>
+</html>
