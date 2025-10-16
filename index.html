@@ -10,14 +10,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* Reset CSS Dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
         body, html {
             height: 100%;
             font-family: 'Montserrat', sans-serif;
             color: #ffffff;
+            overflow: hidden;
         }
 
+        /* Container Halaman Pembuka */
         .hero-section {
             height: 100vh;
             display: flex;
@@ -26,81 +33,344 @@
             align-items: center;
             text-align: center;
             padding: 20px;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                        #8B7355;
+            position: relative;
+            
+            /* Background dengan efek gradient dan gambar */
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
+                #8B7355; /* Fallback color jika gambar tidak load */
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
         }
 
+        /* Efek overlay bunga */
+        .flower-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50,10 C60,20 70,25 80,30 C85,35 90,40 90,50 C90,60 85,65 80,70 C70,75 60,80 50,80 C40,80 30,75 20,70 C15,65 10,60 10,50 C10,40 15,35 20,30 C30,25 40,20 50,10 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></svg>');
+            background-size: 200px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        /* Konten utama */
+        .invitation-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        /* Animasi untuk elemen teks */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1.5s ease forwards;
+        }
+
+        .fade-in-delay-1 {
+            animation-delay: 0.5s;
+        }
+
+        .fade-in-delay-2 {
+            animation-delay: 1s;
+        }
+
+        .fade-in-delay-3 {
+            animation-delay: 1.5s;
+        }
+
+        .fade-in-delay-4 {
+            animation-delay: 2s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Gaya untuk teks */
         .hero-section h1 {
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
             font-weight: 400;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
+            margin: 0;
+            letter-spacing: 3px;
+            text-transform: uppercase;
         }
 
         .couple-name {
             font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
+            font-size: 4.5rem;
             margin: 20px 0;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             line-height: 1.2;
         }
 
+        .date {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin: 15px 0;
+            letter-spacing: 2px;
+        }
+
         .guest-info {
-            margin: 40px 0 20px 0;
+            margin-top: 40px;
+            font-weight: 300;
         }
-
+        
+        .guest-info p {
+            margin: 5px 0;
+        }
+        
         .guest-name {
+            font-weight: 400;
             font-size: 1.2rem;
-            border-bottom: 1px solid rgba(255,255,255,0.5);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
             padding-bottom: 5px;
-            margin-top: 10px;
+            display: inline-block;
         }
 
+        /* Tombol buka undangan */
         .cta-button {
             display: inline-flex;
             align-items: center;
-            margin-top: 30px;
-            padding: 12px 30px;
+            margin-top: 40px;
+            padding: 15px 35px;
             border: 1px solid #ffffff;
             border-radius: 50px;
-            background: rgba(255,255,255,0.1);
+            background-color: rgba(255, 255, 255, 0.1);
             color: #ffffff;
             text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+            font-size: 1rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
             backdrop-filter: blur(10px);
         }
 
         .cta-button:hover {
-            background: #ffffff;
+            background-color: #ffffff;
             color: #000000;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button:active {
+            transform: translateY(-1px);
+        }
+        
+        .cta-button svg {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-button:hover svg {
+            transform: rotate(360deg);
         }
 
-        @media (max-width: 768px) {
-            .couple-name { font-size: 3rem; }
-            .hero-section h1 { font-size: 1.2rem; }
+        /* Musik kontrol */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
+
+        .music-control:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Efek partikel */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Penyesuaian untuk layar kecil (Mobile) */
+        @media (max-width: 768px) {
+            .couple-name {
+                font-size: 3rem;
+            }
+            .hero-section h1 {
+                font-size: 1.2rem;
+            }
+            .date {
+                font-size: 1.1rem;
+            }
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .couple-name {
+                font-size: 2.5rem;
+            }
+            .hero-section h1 {
+                font-size: 1rem;
+            }
+        }
+
     </style>
 </head>
 <body>
-    <div class="hero-section">
-        <h1>The Wedding of</h1>
-        <h2 class="couple-name">Gung Gus & Sonia</h2>
-        
-        <div class="guest-info">
-            <p>Kepada Bpk./Ibu/Saudara/i</p>
-            <p class="guest-name">Tamu Undangan</p>
-        </div>
 
-        <a href="home.html" class="cta-button">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18">
-                <path d="M48 64C21.5 64 0 85.5 0 112v288c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zM0 112C0 99.1 7.2 87.7 18.1 82.2L244.5 220.6c11.3 6.4 25.6 6.4 37 0L501.9 82.2C494.8 87.7 512 99.1 512 112v23.2L327.9 259.3c-17.7 10-39.2 10-56.9 0L0 135.2V112zM48 448V214.3l168.1 95.6c21.8 12.4 48.7 12.4 70.5 0L464 214.3V448H48z" fill="currentColor"/>
-            </svg>
-            Buka Undangan
-        </a>
+    <div class="hero-section">
+        <!-- Efek partikel -->
+        <div class="particles" id="particles"></div>
+        
+        <!-- Overlay bunga -->
+        <div class="flower-overlay"></div>
+        
+        <!-- Konten undangan -->
+        <div class="invitation-content">
+            <h1 class="fade-in">The Wedding of</h1>
+            <h2 class="couple-name fade-in fade-in-delay-1">Gung Gus & Sonia</h2>
+            <p class="date fade-in fade-in-delay-2">15 • 06 • 2024</p>
+            
+            <div class="guest-info fade-in fade-in-delay-3">
+                <p>Kepada Bapak/Ibu/Saudara/i</p>
+                <p class="guest-name">Tamu Undangan</p>
+            </div>
+
+            <a href="home.html" class="cta-button fade-in fade-in-delay-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M48 64C21.5 64 0 85.5 0 112v288c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zM0 112C0 99.1 7.2 87.7 18.1 82.2L244.5 220.6c11.3 6.4 25.6 6.4 37 0L501.9 82.2C494.8 87.7 512 99.1 512 112v23.2L327.9 259.3c-17.7 10-39.2 10-56.9 0L0 135.2V112zM48 448V214.3l168.1 95.6c21.8 12.4 48.7 12.4 70.5 0L464 214.3V448H48z"/>
+                </svg>
+                Buka Undangan
+            </a>
+        </div>
     </div>
+
+    <button class="music-control" id="musicToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+    </button>
+
+    <script>
+        // Fungsi untuk membuat partikel
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Ukuran acak
+                const size = Math.random() * 5 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Posisi awal acak
+                particle.style.left = `${Math.random() * 100}vw`;
+                
+                // Waktu animasi acak
+                const duration = Math.random() * 10 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Delay acak
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Musik latar
+        const musicToggle = document.getElementById('musicToggle');
+        let audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+        audio.loop = true;
+        let isPlaying = false;
+        
+        musicToggle.addEventListener('click', function() {
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+                musicToggle.style.background = 'rgba(255, 255, 255, 0.2)';
+            } else {
+                audio.play().catch(e => {
+                    console.log("Autoplay diblokir, klik tombol untuk memutar musik");
+                });
+                isPlaying = true;
+                musicToggle.style.background = 'rgba(255, 215, 0, 0.3)';
+            }
+        });
+        
+        // Animasi untuk tombol saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            // Tambahkan efek ketikan untuk nama tamu
+            const guestName = document.querySelector('.guest-name');
+            const originalText = guestName.textContent;
+            guestName.textContent = '';
+            
+            let i = 0;
+            const typeWriter = () => {
+                if (i < originalText.length) {
+                    guestName.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            };
+            
+            // Mulai efek ketikan setelah animasi fade in selesai
+            setTimeout(typeWriter, 2500);
+        });
+    </script>
+
 </body>
 </html>
