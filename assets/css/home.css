@@ -1,0 +1,793 @@
+/* assets/css/home.css */
+/* Reset dan Variabel */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #8B7355;
+    --secondary-color: #D4B996;
+    --accent-color: #F5E8D0;
+    --text-light: #ffffff;
+    --shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+body, html {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-light);
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Video Background Container */
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.video-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    z-index: -2;
+    filter: brightness(0.8);
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        rgba(139, 115, 85, 0.3) 0%,
+        rgba(0, 0, 0, 0.5) 50%,
+        rgba(139, 115, 85, 0.3) 100%
+    );
+    z-index: -1;
+}
+
+/* Particle Effects */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: float 15s infinite linear;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Konten Utama */
+.content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 10;
+    padding: 20px;
+}
+
+.title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    letter-spacing: 8px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    animation: fadeInDown 1.5s ease-out;
+}
+/* Tambahkan di home.css - setelah .content */
+.hero-decoration {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 8rem;
+    opacity: 0.1;
+    z-index: 1;
+    font-family: 'Dancing Script', cursive;
+}
+
+.floating-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.floating-element {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.3;
+    animation: floatElement 20s infinite linear;
+}
+/* Update couple container */
+.couple-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    margin: 40px 0;
+    position: relative;
+}
+
+/* Tambahkan garis dekoratif */
+.couple-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    right: 25%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+}
+
+/* Profile cards dengan shadow effect */
+.profile-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+/* Tombol Simpan Tanggal */
+.save-date-btn {
+    margin-top: 30px;
+    padding: 15px 35px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(15px);
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: var(--shadow);
+    animation: fadeInUp 1.5s ease-out 2s both;
+}
+
+.save-date-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+/* Kontrol Video */
+.video-control {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 20;
+    backdrop-filter: blur(15px);
+    box-shadow: var(--shadow);
+}
+
+.video-control:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1);
+}
+
+/* Scroll Down Indicator */
+.scroll-down {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #ffffff;
+    z-index: 100;
+    cursor: pointer;
+    animation: fadeInUp 1.5s ease-out 2.5s both;
+}
+
+.scroll-text {
+    font-size: 14px;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    opacity: 0.9;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+.scroll-arrow {
+    font-size: 24px;
+    animation: bounce 2s infinite;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ⭐⭐ SECTIONS STYLES ⭐⭐ */
+/* Video Fallback Styles */
+.video-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(139, 115, 85, 0.6), rgba(0, 0, 0, 0.7)), #8B7355;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.video-fallback img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Fallback untuk profile images */
+.fallback-initial {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: #8B7355;
+    font-weight: bold;
+}
+
+/* Gallery Placeholder */
+.gallery-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #D4B996;
+    border-radius: 10px;
+    color: #8B7355;
+    font-weight: bold;
+}
+
+.gallery-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+/* Main Content */
+#main-content {
+    position: relative;
+    z-index: 10;
+}
+
+/* Page Sections */
+.page-section {
+    min-height: 100vh;
+    padding: 80px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(254, 250, 240, 0.95);
+    color: #5D4037;
+    scroll-margin-top: 80px;
+}
+
+.page-section:nth-child(even) {
+    background: rgba(139, 115, 85, 0.1);
+}
+
+.page-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: #8B7355;
+}
+
+/* Couple Profile */
+.couple-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.groom-profile, .bride-profile {
+    text-align: center;
+    flex: 1;
+    max-width: 300px;
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: #D4B996;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 5px solid #8B7355;
+    position: relative; /* Tambahkan ini */
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+}
+
+/* Fallback initial akan muncul jika gambar gagal load */
+.fallback-initial {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: #8B7355;
+    font-weight: bold;
+    z-index: 1;
+}
+
+/* Event Details */
+.event-details {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.event-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 350px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-10px);
+}
+
+.event-icon {
+    font-size: 3rem;
+    color: #8B7355;
+    margin-bottom: 20px;
+}
+
+.event-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: #5D4037;
+}
+
+.event-time, .event-date, .event-location {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    color: #8B7355;
+}
+
+/* Timeline */
+.timeline {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 50px;
+    align-items: flex-start;
+}
+
+.timeline-date {
+    flex: 0 0 120px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #8B7355;
+    text-align: right;
+    padding-right: 30px;
+    position: relative;
+}
+
+.timeline-date::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 12px;
+    height: 12px;
+    background: #8B7355;
+    border-radius: 50%;
+}
+
+.timeline-content {
+    flex: 1;
+    text-align: left;
+    padding-left: 30px;
+    border-left: 2px solid #D4B996;
+}
+
+.timeline-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #5D4037;
+}
+
+/* Gallery */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    height: 200px;
+    background: #D4B996;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8B7355;
+    font-weight: bold;
+}
+
+/* RSVP Form */
+.rsvp-desc {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #5D4037;
+}
+
+.rsvp-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #D4B996;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    background: white;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #8B7355;
+}
+
+.submit-btn {
+    background: #8B7355;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background: #5D4037;
+    transform: translateY(-3px);
+}
+
+/* Gift Section */
+.gift-info {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.gift-info p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    color: #5D4037;
+}
+
+.bank-accounts {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.bank-account {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    min-width: 250px;
+}
+
+.bank-account h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #5D4037;
+}
+
+.account-number {
+    font-family: 'Montserrat', monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #8B7355;
+    letter-spacing: 2px;
+}
+
+/* Footer */
+.footer {
+    background: #5D4037;
+    color: #fefaf0;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.footer p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.couple-signature p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2rem;
+        letter-spacing: 5px;
+    }
+    
+    .couple-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .name {
+        font-size: 2.8rem;
+    }
+    
+    .day {
+        font-size: 1.5rem;
+    }
+    
+    .date {
+        font-size: 1rem;
+    }
+    
+    .and-symbol {
+        font-size: 2rem;
+    }
+    
+    .wedding-info {
+        order: -1;
+        margin-bottom: 20px;
+    }
+    
+    .countdown-item {
+        min-width: 70px;
+        padding: 15px 10px;
+    }
+    
+    .countdown-number {
+        font-size: 1.8rem;
+    }
+    
+    .video-control {
+        bottom: 20px;
+        left: 20px;
+        width: 45px;
+        height: 45px;
+    }
+
+    /* Sections Responsive */
+    .couple-profile {
+        gap: 30px;
+    }
+    
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .event-details {
+        gap: 20px;
+    }
+    
+    .event-card {
+        padding: 30px 20px;
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+    }
+    
+    .timeline-date {
+        text-align: left;
+        padding-right: 0;
+        padding-bottom: 10px;
+        flex: none;
+    }
+    
+    .timeline-date::after {
+        left: 0;
+        right: auto;
+    }
+    
+    .timeline-content {
+        padding-left: 20px;
+        border-left: none;
+        border-top: 2px solid #D4B996;
+        padding-top: 20px;
+    }
+    
+    .bank-accounts {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.5rem;
+        letter-spacing: 3px;
+    }
+    
+    .name {
+        font-size: 2.2rem;
+    }
+    
+    .countdown-container {
+        gap: 8px;
+    }
+    
+    .countdown-item {
+        min-width: 65px;
+        padding: 12px 8px;
+    }
+    
+    .countdown-number {
+        font-size: 1.5rem;
+    }
+    
+    .save-date-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .groom-profile h3, .bride-profile h3 {
+        font-size: 2rem;
+    }
+}
