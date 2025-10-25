@@ -1,80 +1,546 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pernikahan Gung Gus & Sonia</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Gung Gus & Sonia Wedding</title>
 
-    <!-- CSS External -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/home.css">
-</head>
-<body>
-    <!-- Video Background -->
-    <div class="video-container">
-        <video class="video-background" autoplay muted loop playsinline id="bgVideo">
-            <!-- Video akan kita tambahkan nanti -->
-            <source src="videos/wedding-cinematic.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        
-        <div class="video-overlay"></div>
-        
-        <!-- Particle Effects -->
-        <div class="particles" id="particles"></div>
-        
-        <!-- Konten Utama -->
-        <div class="content">
-            <h1 class="title">PAWIWAHAN</h1>
-            <h2 class="couple-names">Gung Gus & Sonia</h2>
-            <p class="wedding-date">Jumat, 03 Oktober 2023</p>
-            
-            <div class="countdown-section">
-                <h3 class="countdown-title">Hitungan Mundur Acara</h3>
-                <div class="countdown-container">
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="days">00</div>
-                        <div class="countdown-label">Hari</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="hours">00</div>
-                        <div class="countdown-label">Jam</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="minutes">00</div>
-                        <div class="countdown-label">Menit</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="seconds">00</div>
-                        <div class="countdown-label">Detik</div>
-                    </div>
-                </div>
+    <!-- SEO & Meta Tags -->
+    <meta
+      name="description"
+      content="Undangan pernikahan Gung Gus & Sonia - 15 Juni 2024"
+    />
+    <meta
+      name="keywords"
+      content="pernikahan, wedding, undangan, Gung Gus, Sonia"
+    />
+    <meta name="author" content="Gung Gus & Sonia" />
+    <meta property="og:title" content="Undangan Pernikahan Gung Gus & Sonia" />
+    <meta
+      property="og:description"
+      content="15 Juni 2024 - Berbagi kebahagiaan bersama kami"
+    />
+    <meta property="og:image" content="images/photo1.jpg" />
+    <meta property="og:url" content="https://website-anda.com" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/home.css" />
+
+    <!-- PRELOAD critical images -->
+    <link rel="preload" href="images/photo1.jpg" as="image" />
+    <link
+      rel="preload"
+      href="images/Elegant_Minimalist_Calligraphy_Initials_logo-removebg-preview.png"
+      as="image"
+    />
+  </head>
+  <body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link visually-hidden"
+      >Skip to main content</a
+    >
+
+    <div class="page-wrapper">
+      <!-- Preloader -->
+      <div class="preloader">
+        <div class="loader-content">
+          <div class="ring-loader"></div>
+          <p>Memuat Cinta Kami...</p>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <header class="minimal-header">
+        <a href="#hero" class="corner-logo">
+          <img
+            src="images/Elegant_Minimalist_Calligraphy_Initials_logo-removebg-preview.png"
+            alt="Logo Gung Gus & Sonia"
+            class="logo-image"
+          />
+        </a>
+      </header>
+
+      <!-- Corner Ornaments -->
+      <div class="corner-ornaments corner-bottom-left"></div>
+      <div class="corner-ornaments corner-bottom-right"></div>
+
+      <!-- Hero dengan Center Ornament -->
+      <section id="hero" class="wedding-hero">
+        <div class="bg-slideshow">
+          <div
+            class="bg-layer active"
+            style="background-image: url('images/photo1.jpg')"
+          ></div>
+          <div
+            class="bg-layer"
+            style="background-image: url('images/photo2.jpg')"
+          ></div>
+          <div
+            class="bg-layer"
+            style="background-image: url('images/photo3.jpg')"
+          ></div>
+          <div
+            class="bg-layer"
+            style="background-image: url('images/photo4.jpg')"
+          ></div>
+        </div>
+        <div class="hero-content">
+          <div class="wedding-intro">The Wedding of</div>
+          <h1 class="couple-name">Gung Gus & Sonia</h1>
+          <div class="wedding-date">15 • 06 • 2024</div>
+          <div class="scroll-indicator">↓</div>
+        </div>
+      </section>
+
+      <!-- Main Content -->
+      <main id="main-content">
+        <!-- Enhanced Couple Section -->
+        <section id="couple" class="couple-section">
+          <div class="container">
+            <div class="section-header">
+              <h2>Kami Berdua</h2>
+              <div class="divider"></div>
+              <p class="section-subtitle">
+                Dua hati, satu janji untuk selamanya
+              </p>
             </div>
-            
-            <button class="save-date-btn">
-                <i class="fas fa-calendar-plus"></i> Simpan Tanggal
-            </button>
+
+            <div class="couple-container">
+              <!-- Groom Side -->
+              <div class="couple-side groom-side">
+                <div class="profile-card groom-card">
+                  <div class="profile-image-container">
+                    <div class="profile-image-frame">
+                      <div class="profile-image groom-img">
+                        <div class="image-overlay">
+                          <span class="photo-emoji">🤵‍♂️</span>
+                        </div>
+                      </div>
+                      <div class="decorative-element groom-deco"></div>
+                    </div>
+                  </div>
+
+                  <div class="profile-content">
+                    <div class="name-title">
+                      <h3>Gung Gus</h3>
+                      <div class="title-underline"></div>
+                    </div>
+                    <p class="profile-role">Mempelai Pria</p>
+
+                    <div class="profile-details">
+                      <div class="parents-info">
+                        <i class="icon-family">👨‍👩‍👦</i>
+                        <span
+                          >Putra dari Bapak [Nama Ayah] & Ibu [Nama Ibu]</span
+                        >
+                      </div>
+
+                      <div class="profile-bio">
+                        <p>
+                          Seorang profesional yang penuh dedikasi, memiliki hati
+                          yang lembut dan tanggung jawab yang besar. Menyukai
+                          tantangan dan selalu berusaha memberikan yang terbaik
+                          untuk orang-orang tercinta.
+                        </p>
+                      </div>
+
+                      <div class="personal-traits">
+                        <div class="trait">
+                          <span class="trait-icon">💼</span>
+                          <span class="trait-text">Profesional</span>
+                        </div>
+                        <div class="trait">
+                          <span class="trait-icon">🤝</span>
+                          <span class="trait-text">Bertanggung Jawab</span>
+                        </div>
+                        <div class="trait">
+                          <span class="trait-icon">❤️</span>
+                          <span class="trait-text">Penyayang</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Center Connection -->
+              <div class="couple-connection">
+                <div class="connection-heart">
+                  <div class="heart-pulse"></div>
+                  <div class="heart-core">💑</div>
+                  <div class="heart-sparkle"></div>
+                </div>
+                <div class="connection-line"></div>
+                <div class="wedding-date-badge">
+                  <span class="date-number">15</span>
+                  <span class="date-month">Juni</span>
+                  <span class="date-year">2024</span>
+                </div>
+              </div>
+
+              <!-- Bride Side -->
+              <div class="couple-side bride-side">
+                <div class="profile-card bride-card">
+                  <div class="profile-image-container">
+                    <div class="profile-image-frame">
+                      <div class="profile-image bride-img">
+                        <div class="image-overlay">
+                          <span class="photo-emoji">👰‍♀️</span>
+                        </div>
+                      </div>
+                      <div class="decorative-element bride-deco"></div>
+                    </div>
+                  </div>
+
+                  <div class="profile-content">
+                    <div class="name-title">
+                      <h3>Sonia</h3>
+                      <div class="title-underline"></div>
+                    </div>
+                    <p class="profile-role">Mempelai Wanita</p>
+
+                    <div class="profile-details">
+                      <div class="parents-info">
+                        <i class="icon-family">👨‍👩‍👧</i>
+                        <span
+                          >Putri dari Bapak [Nama Ayah] & Ibu [Nama Ibu]</span
+                        >
+                      </div>
+
+                      <div class="profile-bio">
+                        <p>
+                          Wanita anggun dengan senyuman yang menawan, memiliki
+                          kepedulian tinggi dan hati yang tulus. Passionate
+                          dalam menciptakan kehangatan keluarga dan selalu
+                          memberikan yang terbaik.
+                        </p>
+                      </div>
+
+                      <div class="personal-traits">
+                        <div class="trait">
+                          <span class="trait-icon">🎨</span>
+                          <span class="trait-text">Kreatif</span>
+                        </div>
+                        <div class="trait">
+                          <span class="trait-icon">🌷</span>
+                          <span class="trait-text">Lembut Hati</span>
+                        </div>
+                        <div class="trait">
+                          <span class="trait-icon">🌟</span>
+                          <span class="trait-text">Optimis</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Love Quote -->
+            <div class="couple-quote">
+              <div class="quote-container">
+                <div class="quote-icon">💖</div>
+                <blockquote>
+                  "Cinta bukan tentang menemukan orang yang sempurna, tetapi
+                  tentang melihat orang yang tidak sempurna dengan cara yang
+                  sempurna."
+                </blockquote>
+                <div class="quote-author">- Gung Gus & Sonia -</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="gallery-section">
+          <div class="container">
+            <div class="section-header">
+              <h2>Galeri Kenangan</h2>
+              <div class="divider"></div>
+            </div>
+            <div class="gallery-grid">
+              <div class="gallery-item">
+                <img
+                  src="images/photo1.jpg"
+                  alt="Momen romantis kami"
+                  loading="lazy"
+                />
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="images/photo2.jpg"
+                  alt="Kebersamaan kami"
+                  loading="lazy"
+                />
+              </div>
+              <div class="gallery-item">
+                <img src="images/photo3.jpg" alt="Cinta kami" loading="lazy" />
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="images/photo4.jpg"
+                  alt="Kenangan indah"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events" class="events-section">
+          <div class="container">
+            <div class="section-header">
+              <h2>Detail Acara</h2>
+              <div class="divider"></div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="event-card">
+                  <h3>Akad Nikah</h3>
+                  <div class="event-date">Sabtu, 15 Juni 2024</div>
+                  <div class="event-time">08:00 - 10:00 WIB</div>
+                  <div class="event-location">
+                    Masjid Al-Ikhlas<br />
+                    Jl. Kebahagiaan No. 123, Jakarta
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="event-card">
+                  <h3>Resepsi</h3>
+                  <div class="event-date">Sabtu, 15 Juni 2024</div>
+                  <div class="event-time">11:00 - 14:00 WIB</div>
+                  <div class="event-location">
+                    Grand Ballroom<br />
+                    Hotel Bahagia Sentosa, Jakarta
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- RSVP Section -->
+        <section id="rsvp" class="rsvp-section">
+          <div class="container">
+            <div class="section-header">
+              <h2>Konfirmasi Kehadiran</h2>
+              <div class="divider"></div>
+              <p class="section-subtitle">
+                Mohon konfirmasi kehadiran Anda sebelum 10 Juni 2024
+              </p>
+            </div>
+
+            <form
+              id="wedding-rsvp"
+              class="rsvp-form"
+              method="POST"
+              action="/submit-rsvp"
+            >
+              <input type="hidden" name="csrf_token" value="" />
+
+              <div class="row">
+                <!-- Data Diri -->
+                <div class="col-md-6 mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="full_name"
+                    placeholder="Nama Lengkap *"
+                    required
+                    minlength="2"
+                    maxlength="100"
+                    pattern="[A-Za-z\s]+"
+                    title="Hanya huruf dan spasi diperbolehkan"
+                  />
+                  <small class="form-text">* Wajib diisi</small>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <input
+                    type="email"
+                    class="form-control"
+                    name="email"
+                    placeholder="Alamat Email *"
+                    required
+                  />
+                  <small class="form-text">* Wajib diisi</small>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <input
+                    type="tel"
+                    class="form-control"
+                    name="phone"
+                    placeholder="Nomor WhatsApp *"
+                    required
+                    pattern="[0-9]+"
+                    minlength="10"
+                    maxlength="15"
+                    title="Masukkan nomor WhatsApp yang aktif"
+                  />
+                  <small class="form-text">* Untuk konfirmasi</small>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="guest_count"
+                    placeholder="Jumlah Tamu *"
+                    required
+                    min="1"
+                    max="5"
+                    value="1"
+                  />
+                  <small class="form-text">* Maksimal 5 orang</small>
+                </div>
+
+                <!-- Konfirmasi Kehadiran -->
+                <div class="col-12 mb-4">
+                  <div class="attendance-options">
+                    <label class="attendance-label"
+                      >Konfirmasi Kehadiran *</label
+                    >
+                    <div class="radio-group">
+                      <label class="radio-option">
+                        <input
+                          type="radio"
+                          name="attendance"
+                          value="yes"
+                          required
+                        />
+                        <span class="radio-custom"></span>
+                        <span class="radio-text">Ya, saya akan hadir</span>
+                      </label>
+                      <label class="radio-option">
+                        <input
+                          type="radio"
+                          name="attendance"
+                          value="no"
+                          required
+                        />
+                        <span class="radio-custom"></span>
+                        <span class="radio-text">Maaf, tidak bisa hadir</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Acara yang Dihadiri -->
+                <div
+                  class="col-12 mb-3"
+                  id="event-selection"
+                  style="display: none"
+                >
+                  <label class="event-label">Acara yang akan dihadiri:</label>
+                  <div class="checkbox-group">
+                    <label class="checkbox-option">
+                      <input type="checkbox" name="events[]" value="akad" />
+                      <span class="checkbox-custom"></span>
+                      <span class="checkbox-text"
+                        >Akad Nikah (08:00 - 10:00 WIB)</span
+                      >
+                    </label>
+                    <label class="checkbox-option">
+                      <input type="checkbox" name="events[]" value="resepsi" />
+                      <span class="checkbox-custom"></span>
+                      <span class="checkbox-text"
+                        >Resepsi (11:00 - 14:00 WIB)</span
+                      >
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Ucapan & Doa -->
+                <div class="col-12 mb-4">
+                  <textarea
+                    class="form-control"
+                    name="message"
+                    placeholder="Ucapan & Doa untuk Kami..."
+                    rows="4"
+                    maxlength="500"
+                  ></textarea>
+                  <small class="form-text">Maksimal 500 karakter</small>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn-rsvp">
+                    <span class="btn-text">Kirim Konfirmasi</span>
+                    <div class="btn-loading" style="display: none">
+                      <div class="spinner"></div>
+                      Mengirim...
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <!-- Success Message -->
+            <div
+              id="rsvp-success"
+              class="success-message"
+              style="display: none"
+            >
+              <div class="success-icon">✓</div>
+              <h3>Terima Kasih!</h3>
+              <p>Konfirmasi kehadiran Anda telah berhasil dikirim.</p>
+              <p>Kami sangat menantikan kehadiran Anda di hari bahagia kami.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="wedding-footer">
+        <div class="container">
+          <div class="section-header">
+            <h2>Lokasi Acara</h2>
+            <div class="divider"></div>
+          </div>
+          <div class="map-placeholder">
+            🗺️ Peta Lokasi Akan Ditampilkan di Sini
+          </div>
+          <div class="footer-content text-center">
+            <p>
+              "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan
+              untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung
+              dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa
+              kasih dan sayang."
+            </p>
+            <p class="verse">(QS. Ar-Rum: 21)</p>
+            <div class="copyright">
+              &copy; 2024 The Wedding of Gung Gus & Sonia
+            </div>
+          </div>
         </div>
-        
-        <!-- Kontrol Video -->
-        <div class="video-control" id="videoControl">
-            <i class="fas fa-volume-mute"></i>
-        </div>
-        
-        <!-- Tombol Next -->
-        <div class="next-btn" id="nextPage">
-            <i class="fas fa-chevron-right"></i>
-        </div>
+      </footer>
     </div>
 
-    <!-- JavaScript External -->
-    <script src="assets/js/main.js"></script>
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="assets/js/home.js"></script>
-</body>
+  </body>
 </html>
